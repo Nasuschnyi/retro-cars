@@ -1,0 +1,16 @@
+:root {
+	--color-background: #ffffff;
+	--color-foreground: #171717;
+
+	--font-family-base: var(--font-unbounded), system-ui, sans-serif;
+
+	--container-width: clamp(360px, 90vw, 1804px);
+	--container-padding: clamp(16px, 4vw, 58px);
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--color-background: #0a0a0a;
+		--color-foreground: #ededed;
+	}
+}

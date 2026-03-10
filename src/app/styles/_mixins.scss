@@ -1,0 +1,30 @@
+/* container */
+
+@mixin container {
+	width: min(var(--container-width), 100%);
+	padding-left: var(--container-padding);
+	padding-right: var(--container-padding);
+	margin: 0 auto;
+}
+
+/* flex center */
+
+@mixin flex-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* responsive breakpoint */
+
+@mixin tablet {
+	@media (max-width: 1024px) {
+		@content;
+	}
+}
+
+@mixin mobile {
+	@media (max-width: 768px) {
+		@content;
+	}
+}

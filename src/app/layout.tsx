@@ -1,5 +1,6 @@
 import { Unbounded } from 'next/font/google';
 import './globals.scss';
+import { Header } from './components/header/Header';
 
 const unbounded = Unbounded({
 	subsets: ['latin'],
@@ -23,7 +24,10 @@ export default function RootLayout({
 			lang="en"
 			className={unbounded.variable}
 		>
-			<body>{children}</body>
+			<body>
+				<Header />
+				{children}
+			</body>
 		</html>
 	);
 }
