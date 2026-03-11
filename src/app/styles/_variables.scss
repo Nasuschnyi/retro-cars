@@ -1,16 +1,19 @@
 :root {
-	--color-background: #ffffff;
-	--color-foreground: #171717;
+	--color-background: #ece7e1;
+	--color-foreground: #1a1818;
+	--color-accent: #ff0800;
 
 	--font-family-base: var(--font-unbounded), system-ui, sans-serif;
 
-	--container-width: clamp(360px, 90vw, 1804px);
-	--container-padding: clamp(16px, 4vw, 58px);
+	--container-width: clamp(22.5rem, 90vw, 112.5rem);
+	--container-padding: clamp(1rem, 4vw, 3.75rem);
+
+	--transition-default: 0.25s ease;
 }
 
 @media (prefers-color-scheme: dark) {
 	:root {
-		--color-background: #0a0a0a;
-		--color-foreground: #ededed;
+		--color-background: #1a1818;
+		--color-foreground: #ece7e1;
 	}
 }

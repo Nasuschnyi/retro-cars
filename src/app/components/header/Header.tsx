@@ -12,16 +12,36 @@ export const Header = () => (
 			</Link>
 			<ul className={styles.list}>
 				<li className={styles.item}>
-					<Link href="/">Cars</Link>
+					<Link
+						className={styles.link}
+						href="/"
+					>
+						Cars
+					</Link>
 				</li>
 				<li className={styles.item}>
-					<Link href="/">About Us</Link>
+					<Link
+						className={styles.link}
+						href="/"
+					>
+						About Us
+					</Link>
 				</li>
 				<li className={styles.item}>
-					<Link href="/">Services</Link>
+					<Link
+						className={styles.link}
+						href="/"
+					>
+						Services
+					</Link>
 				</li>
 				<li className={styles.item}>
-					<Link href="/">Contacts</Link>
+					<Link
+						className={styles.link}
+						href="/"
+					>
+						Contacts
+					</Link>
 				</li>
 			</ul>
 			<Link
