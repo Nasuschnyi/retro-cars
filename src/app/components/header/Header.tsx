@@ -10,6 +10,7 @@ export const Header = () => (
 			>
 				Cars Classic Autotrader
 			</Link>
+
 			<ul className={styles.list}>
 				<li className={styles.item}>
 					<Link
@@ -44,12 +45,23 @@ export const Header = () => (
 					</Link>
 				</li>
 			</ul>
+
 			<Link
 				className={styles.contact}
 				href="tel:+12403751288"
 			>
 				+1 (240) 375-1288
 			</Link>
+
+			<button
+				className={styles.burger}
+				type="button"
+				aria-label="Open menu"
+			>
+				<span className={styles.burgerLine} />
+				<span className={styles.burgerLine} />
+				<span className={styles.burgerLine} />
+			</button>
 		</nav>
 	</header>
 );

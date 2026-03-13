@@ -4,49 +4,19 @@
 	@include mixins.container;
 	min-height: 100svh;
 	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	gap: 12px;
+	align-items: center;
 }
 
-.kicker,
-.title,
-.line,
-.lineShort {
+.skeleton {
 	position: relative;
 	overflow: hidden;
 	border-radius: 999px;
-	background: rgba(127, 127, 127, 0.2);
+	background: rgba(127, 127, 127, 0.25);
+	height: clamp(44px, 7vw, 72px);
+	width: min(720px, 100%);
 }
 
-.kicker {
-	width: 150px;
-	height: 12px;
-}
-
-.title {
-	width: min(760px, 100%);
-	height: clamp(42px, 7vw, 74px);
-	margin-top: 4px;
-}
-
-.line {
-	width: min(640px, 100%);
-	height: 18px;
-	margin-top: 8px;
-	border-radius: 10px;
-}
-
-.lineShort {
-	width: min(420px, 100%);
-	height: 18px;
-	border-radius: 10px;
-}
-
-.kicker::after,
-.title::after,
-.line::after,
-.lineShort::after {
+.skeleton::after {
 	content: '';
 	position: absolute;
 	inset: 0;
@@ -54,10 +24,10 @@
 	background: linear-gradient(
 		90deg,
 		transparent 0%,
-		rgba(255, 255, 255, 0.45) 45%,
+		rgba(255, 255, 255, 0.55) 45%,
 		transparent 100%
 	);
-	animation: shimmer 1.1s linear infinite;
+	animation: shimmer 1.2s linear infinite;
 }
 
 @keyframes shimmer {
@@ -67,10 +37,14 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.kicker::after,
-	.title::after,
-	.line::after,
-	.lineShort::after {
+	.skeleton::after {
 		animation: none;
+	}
+}
+
+@include mixins.mobile {
+	.root {
+		align-items: flex-start;
+		padding-top: clamp(32px, 8vh, 72px);
 	}
 }

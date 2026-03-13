@@ -2,62 +2,88 @@
 
 .root {
 	@include mixins.container;
-	min-height: 100svh;
 	display: flex;
-	align-items: center;
-	padding-top: clamp(40px, 8vh, 96px);
-	padding-bottom: clamp(40px, 8vh, 96px);
 }
 
-.hero {
-	max-width: 760px;
-}
-
-.kicker,
 .title,
-.lead {
+.lead,
+.cta {
 	opacity: 0;
-	transform: translateY(18px);
-	animation: reveal 640ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-.kicker {
-	margin-bottom: 14px;
-	font-size: 0.8rem;
-	letter-spacing: 0.12em;
-	text-transform: uppercase;
-	opacity: 0.75;
+	transform: translateY(18px) scale(0.98);
+	filter: blur(8px);
+	animation: reveal 720ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+	animation-delay: var(--delay, 0ms);
 }
 
 .title {
 	font-size: clamp(2rem, 6vw, 4.5rem);
 	line-height: 1.05;
 	letter-spacing: -0.02em;
-	animation-delay: 90ms;
+	--delay: 80ms;
 }
 
 .lead {
-	margin-top: 18px;
+	margin: 0;
 	max-width: 58ch;
 	font-size: clamp(1rem, 2.2vw, 1.25rem);
 	line-height: 1.6;
 	opacity: 0.85;
-	animation-delay: 180ms;
+	--delay: 180ms;
+}
+
+.cta {
+	--delay: 300ms;
+	align-self: flex-start;
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4rem;
+	padding: 8px 18px;
+	border: 1px solid currentColor;
+	border-radius: 999px;
+	text-decoration: none;
+	font-size: 0.8rem;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	transition:
+		transform var(--transition-default),
+		box-shadow var(--transition-default);
+}
+
+.cta:hover {
+	transform: translateY(-1px);
+	box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
+}
+
+.cta:focus-visible {
+	outline: 2px solid var(--color-accent);
+	outline-offset: 3px;
 }
 
 @keyframes reveal {
-	to {
+	0% {
+		opacity: 0;
+		transform: translateY(18px) scale(0.98);
+		filter: blur(8px);
+	}
+	65% {
 		opacity: 1;
-		transform: translateY(0);
+		transform: translateY(-4px) scale(1.01);
+		filter: blur(0);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+		filter: blur(0);
 	}
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.kicker,
 	.title,
-	.lead {
+	.lead,
+	.cta {
 		opacity: 1;
 		transform: none;
+		filter: none;
 		animation: none;
 	}
 }

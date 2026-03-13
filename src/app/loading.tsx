@@ -7,10 +7,10 @@ export default function Loading() {
 			aria-busy="true"
 			aria-live="polite"
 		>
-			<div className={styles.kicker} />
-			<div className={styles.title} />
-			<div className={styles.line} />
-			<div className={styles.lineShort} />
+			<div
+				className={styles.skeleton}
+				aria-hidden="true"
+			/>
 		</main>
 	);
 }

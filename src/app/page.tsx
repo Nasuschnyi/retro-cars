@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import styles from './page.module.scss';
 
 export const metadata = {
@@ -12,12 +13,14 @@ export default function Home() {
 				className={styles.hero}
 				aria-label="Page intro"
 			>
-				<p className={styles.kicker}>Classic Marketplace</p>
 				<h1 className={styles.title}>Retro cars 1960-1970</h1>
-				<p className={styles.lead}>
-					Discover restored icons and rare finds from the golden era of automotive
-					design.
-				</p>
+				<p className={styles.lead}>Vintage retro cars USA</p>
+				<Link
+					href="/"
+					className={styles.cta}
+				>
+					Find a car
+				</Link>
 			</section>
 		</main>
 	);
