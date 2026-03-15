@@ -1,5 +1,13 @@
 import Link from 'next/link';
+import { BurgerMenu } from '../ui/BurgerMenu';
 import styles from './header.module.scss';
+
+const navItems = [
+	{ href: '/', label: 'Cars' },
+	{ href: '/', label: 'About Us' },
+	{ href: '/', label: 'Services' },
+	{ href: '/', label: 'Contacts' },
+];
 
 export const Header = () => (
 	<header className={styles.header}>
@@ -12,38 +20,19 @@ export const Header = () => (
 			</Link>
 
 			<ul className={styles.list}>
-				<li className={styles.item}>
-					<Link
-						className={styles.link}
-						href="/"
+				{navItems.map((item) => (
+					<li
+						className={styles.item}
+						key={item.label}
 					>
-						Cars
-					</Link>
-				</li>
-				<li className={styles.item}>
-					<Link
-						className={styles.link}
-						href="/"
-					>
-						About Us
-					</Link>
-				</li>
-				<li className={styles.item}>
-					<Link
-						className={styles.link}
-						href="/"
-					>
-						Services
-					</Link>
-				</li>
-				<li className={styles.item}>
-					<Link
-						className={styles.link}
-						href="/"
-					>
-						Contacts
-					</Link>
-				</li>
+						<Link
+							className={styles.link}
+							href={item.href}
+						>
+							{item.label}
+						</Link>
+					</li>
+				))}
 			</ul>
 
 			<Link
@@ -53,15 +42,11 @@ export const Header = () => (
 				+1 (240) 375-1288
 			</Link>
 
-			<button
-				className={styles.burger}
-				type="button"
-				aria-label="Open menu"
-			>
-				<span className={styles.burgerLine} />
-				<span className={styles.burgerLine} />
-				<span className={styles.burgerLine} />
-			</button>
+			<BurgerMenu
+				navItems={navItems}
+				contactHref="tel:+12403751288"
+				contactLabel="+1 (240) 375-1288"
+			/>
 		</nav>
 	</header>
 );

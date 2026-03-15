@@ -5,8 +5,8 @@
 	top: 0;
 	background: var(--color-background);
 	background: color-mix(in srgb, var(--color-background) 90%, transparent);
-	backdrop-filter: blur(12px);
-	border-bottom: 1px solid
+	backdrop-filter: blur(0.75rem);
+	border-bottom: 0.0625rem solid
 		color-mix(in srgb, var(--color-foreground) 12%, transparent);
 	z-index: 20;
 }
@@ -17,7 +17,7 @@
 	justify-content: space-between;
 	align-items: center;
 	gap: 1rem;
-	padding: clamp(24px, 4vw, 45px) var(--container-padding);
+	padding: clamp(1.5rem, 4vw, 2.8125rem) var(--container-padding);
 	margin: var(--container-margin);
 }
 
@@ -47,9 +47,9 @@
 		content: '';
 		position: absolute;
 		left: 0;
-		bottom: 2px;
+		bottom: 0.125rem;
 		width: 100%;
-		height: 1px;
+		height: 0.0625rem;
 		background: currentColor;
 		transform: scaleX(0);
 		transform-origin: left;
@@ -81,41 +81,6 @@
 	}
 }
 
-.burger {
-	display: none;
-	width: 2.25rem;
-	height: 1rem;
-	padding: 0;
-	border: 0;
-	background: transparent;
-	color: var(--color-foreground);
-	flex-direction: column;
-	justify-content: space-between;
-	align-items: flex-end;
-	cursor: pointer;
-}
-
-.burgerLine {
-	width: 100%;
-	height: 0.125rem;
-	border-radius: 999px;
-	background: currentColor;
-	transition: var(--transition-default);
-
-	&:nth-child(2) {
-		width: 85%;
-	}
-
-	&:nth-child(3) {
-		width: 70%;
-	}
-}
-
-.burger:focus-visible {
-	outline: 2px solid var(--color-accent);
-	outline-offset: 6px;
-}
-
 @include mixins.tablet {
 	.contact {
 		display: none;
@@ -125,9 +90,5 @@
 @include mixins.mobile {
 	.list {
 		display: none;
-	}
-
-	.burger {
-		display: flex;
 	}
 }
