@@ -18,7 +18,7 @@
 	cursor: pointer;
 	transition: var(--transition-default);
 	position: relative;
-	z-index: 35;
+	z-index: 50;
 }
 
 .burgerLine {
@@ -70,7 +70,7 @@
 		opacity: 0;
 		pointer-events: none;
 		transition: var(--transition-default);
-		z-index: 100;
+		z-index: 30;
 	}
 
 	.menu {
@@ -94,7 +94,7 @@
 			opacity 0.2s ease;
 		flex-direction: column;
 		gap: 1.5rem;
-		z-index: 110;
+		z-index: 40;
 	}
 
 	.title {
