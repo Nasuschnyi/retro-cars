@@ -5,12 +5,18 @@
 	display: flex;
 }
 
+.hero {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+}
+
 .title,
 .lead,
 .cta {
 	opacity: 0;
-	transform: translateY(18px) scale(0.98);
-	filter: blur(8px);
+	transform: translateY(1.125rem) scale(1);
+	filter: blur(0.5rem);
 	animation: reveal 720ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
 	animation-delay: var(--delay, 0ms);
 }
@@ -20,6 +26,11 @@
 	line-height: 1.05;
 	letter-spacing: -0.02em;
 	--delay: 80ms;
+	padding: clamp(1.5rem, 4vw, 3.125rem) 0 clamp(1rem, 3vw, 3.125rem);
+}
+.deck {
+	display: flex;
+	gap: 0.875rem;
 }
 
 .lead {
@@ -37,37 +48,48 @@
 	display: inline-flex;
 	align-items: center;
 	gap: 0.4rem;
-	padding: 8px 18px;
-	border: 1px solid currentColor;
-	border-radius: 999px;
+	padding: 0.5rem 1.125rem;
+	border: 0.0625rem solid currentColor;
+	border-radius: 999rem;
 	text-decoration: none;
-	font-size: 0.8rem;
-	letter-spacing: 0.12em;
-	text-transform: uppercase;
+	font-size: 0.875rem;
+	line-height: 1.1;
 	transition:
 		transform var(--transition-default),
 		box-shadow var(--transition-default);
 }
 
+.icon {
+	width: 1rem;
+	height: 1rem;
+	display: block;
+	flex: 0 0 auto;
+	transition: transform var(--transition-default);
+}
+
 .cta:hover {
-	transform: translateY(-1px);
-	box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
+	transform: translateY(-0.0625rem);
+	box-shadow: 0 0.625rem 1.5rem rgba(0, 0, 0, 0.15);
+}
+
+.cta:hover .icon {
+	transform: translateX(0.125rem);
 }
 
 .cta:focus-visible {
 	outline: 2px solid var(--color-accent);
-	outline-offset: 3px;
+	outline-offset: 0.1875rem;
 }
 
 @keyframes reveal {
 	0% {
 		opacity: 0;
-		transform: translateY(18px) scale(0.98);
-		filter: blur(8px);
+		transform: translateY(1.125rem) scale(0.98);
+		filter: blur(0.5rem);
 	}
 	65% {
 		opacity: 1;
-		transform: translateY(-4px) scale(1.01);
+		transform: translateY(-0.25rem) scale(1.01);
 		filter: blur(0);
 	}
 	100% {
@@ -91,5 +113,15 @@
 @include mixins.mobile {
 	.root {
 		align-items: flex-start;
+	}
+
+	.deck {
+		flex-direction: column;
+		gap: 1.75rem;
+	}
+
+	.cta {
+		align-self: stretch;
+		justify-content: center;
 	}
 }
