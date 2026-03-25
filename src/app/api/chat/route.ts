@@ -3,19 +3,21 @@ import { NextResponse } from 'next/server';
 
 export const runtime = 'nodejs';
 
-const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-
 type ChatRequest = {
 	input?: string;
 };
 
 export async function POST(request: Request) {
-	if (!process.env.OPENAI_API_KEY) {
+	const apiKey = process.env.OPENAI_API_KEY;
+	if (!apiKey) {
 		return NextResponse.json(
 			{ error: 'Missing OPENAI_API_KEY' },
 			{ status: 500 }
 		);
 	}
+
+	// Instantiate lazily so build-time module evaluation doesn't require the key.
+	const client = new OpenAI({ apiKey });
 
 	let body: ChatRequest | null = null;
 	try {
