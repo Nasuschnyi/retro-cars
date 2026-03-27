@@ -2,7 +2,7 @@
 
 .root {
 	@include mixins.container;
-	min-height: 100svh;
+	min-block-size: 100svh;
 	display: flex;
 	align-items: center;
 }
@@ -10,24 +10,19 @@
 .skeleton {
 	position: relative;
 	overflow: hidden;
+	inline-size: min(45rem, 100%);
+	block-size: clamp(2.75rem, 7vw, 4.5rem);
 	border-radius: 999px;
-	background: rgba(127, 127, 127, 0.25);
-	height: clamp(44px, 7vw, 72px);
-	width: min(720px, 100%);
-}
+	background: rgb(127 127 127 / 25%);
 
-.skeleton::after {
-	content: '';
-	position: absolute;
-	inset: 0;
-	transform: translateX(-100%);
-	background: linear-gradient(
-		90deg,
-		transparent 0%,
-		rgba(255, 255, 255, 0.55) 45%,
-		transparent 100%
-	);
-	animation: shimmer 1.2s linear infinite;
+	&::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		transform: translateX(-100%);
+		background: linear-gradient(90deg, transparent 0%, rgb(255 255 255 / 55%) 45%, transparent 100%);
+		animation: shimmer 1.2s linear infinite;
+	}
 }
 
 @keyframes shimmer {
@@ -45,6 +40,6 @@
 @include mixins.mobile {
 	.root {
 		align-items: flex-start;
-		padding-top: clamp(32px, 8vh, 72px);
+		padding-top: clamp(2rem, 8vh, 4.5rem);
 	}
 }

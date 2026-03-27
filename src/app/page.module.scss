@@ -7,8 +7,8 @@
 
 .hero {
 	display: flex;
-	flex-direction: column;
 	flex: 1;
+	flex-direction: column;
 }
 
 .title,
@@ -22,24 +22,24 @@
 }
 
 .title {
+	--delay: 80ms;
+	padding: clamp(1.5rem, 4vw, 3.125rem) 0 clamp(1rem, 3vw, 3.125rem);
 	font-size: clamp(2rem, 6vw, 4.5rem);
 	line-height: 1.05;
 	letter-spacing: -0.02em;
-	--delay: 80ms;
-	padding: clamp(1.5rem, 4vw, 3.125rem) 0 clamp(1rem, 3vw, 3.125rem);
 }
+
 .deck {
 	display: flex;
 	gap: 0.875rem;
 }
 
 .lead {
-	margin: 0;
-	max-width: 58ch;
+	--delay: 180ms;
+	max-inline-size: 58ch;
 	font-size: clamp(1rem, 2.2vw, 1.25rem);
 	line-height: 1.6;
 	opacity: 0.85;
-	--delay: 180ms;
 }
 
 .cta {
@@ -49,36 +49,35 @@
 	align-items: center;
 	gap: 0.4rem;
 	padding: 0.5rem 1.125rem;
-	border: 0.0625rem solid currentColor;
+	color: var(--color-cta-fg);
+	background: var(--color-cta-bg);
+	border: 0.0625rem solid var(--color-cta-border);
 	border-radius: 999rem;
-	text-decoration: none;
 	font-size: 0.875rem;
 	line-height: 1.1;
-	transition:
-		transform var(--transition-default),
-		box-shadow var(--transition-default);
+	transition: transform var(--transition-default), box-shadow var(--transition-default), background-color var(--transition-default);
+
+	&:hover {
+		transform: translateY(-0.0625rem);
+		background: var(--color-cta-bg-hover);
+		box-shadow: 0 0.625rem 1.5rem rgb(0 0 0 / 15%);
+
+		.icon {
+			transform: translateX(0.125rem);
+		}
+	}
+
+	&:focus-visible {
+		outline: 0.125rem solid var(--color-accent);
+		outline-offset: 0.1875rem;
+	}
 }
 
 .icon {
-	width: 1rem;
-	height: 1rem;
-	display: block;
+	inline-size: 1rem;
+	block-size: 1rem;
 	flex: 0 0 auto;
 	transition: transform var(--transition-default);
-}
-
-.cta:hover {
-	transform: translateY(-0.0625rem);
-	box-shadow: 0 0.625rem 1.5rem rgba(0, 0, 0, 0.15);
-}
-
-.cta:hover .icon {
-	transform: translateX(0.125rem);
-}
-
-.cta:focus-visible {
-	outline: 2px solid var(--color-accent);
-	outline-offset: 0.1875rem;
 }
 
 @keyframes reveal {

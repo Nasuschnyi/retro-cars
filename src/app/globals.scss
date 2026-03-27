@@ -1,30 +1,18 @@
 @use './styles/reset';
 @use './styles/variables';
 
-html {
-	font-size: 16px;
-}
-
 body {
-	min-height: 100vh;
-	min-width: 18rem;
-
-	background-color: var(--color-background);
+	min-block-size: 100vh;
+	min-inline-size: 18rem;
+	background: var(--color-background);
 	color: var(--color-foreground);
-
 	font-family: var(--font-family-base);
 	line-height: 1.5;
-
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+:where(h1, h2, h3, h4, h5, h6) {
 	font-weight: 600;
 	line-height: 1.2;
 }

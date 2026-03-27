@@ -2,13 +2,15 @@
 	--color-background: #ece7e1;
 	--color-foreground: #1a1818;
 	--color-accent: #ff0800;
-
+	--color-cta-bg: var(--color-foreground);
+	--color-cta-fg: var(--color-background);
+	--color-cta-border: var(--color-foreground);
+	--color-cta-bg-hover: color-mix(in srgb, var(--color-foreground) 88%, var(--color-background) 12%);
+	--color-cta-border-hover: var(--color-cta-bg-hover);
 	--font-family-base: var(--font-unbounded), system-ui, sans-serif;
-
 	--container-width: clamp(22.5rem, 90vw, 112.5rem);
 	--container-padding: clamp(1rem, 4vw, 3.75rem);
 	--container-margin: 0 auto;
-
 	--transition-default: 0.25s ease;
 }
 

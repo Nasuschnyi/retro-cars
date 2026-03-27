@@ -1,29 +1,24 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import styles from './burger-menu.module.scss';
 
-type NavItem = {
-	href: string;
-	label: string;
-};
-
 type BurgerMenuProps = {
-	navItems: NavItem[];
+	navItems: { href: string; label: string }[];
 	contactHref: string;
 	contactLabel: string;
 };
 
-export const BurgerMenu = ({
+export const BurgerMenu = memo(function BurgerMenu({
 	navItems,
 	contactHref,
 	contactLabel,
-}: BurgerMenuProps) => {
+}: BurgerMenuProps) {
 	const [isOpen, setIsOpen] = useState(false);
 	const [mounted, setMounted] = useState(false);
-	const bodyOverflowRef = useRef<string | null>(null);
+	const openState = isOpen ? 'true' : 'false';
 
 	const closeMenu = () => setIsOpen(false);
 	const toggleMenu = () => setIsOpen((prev) => !prev);
@@ -33,33 +28,13 @@ export const BurgerMenu = ({
 	}, []);
 
 	useEffect(() => {
-		if (!mounted) return;
-
-		const { style } = document.body;
-
-		if (isOpen) {
-			if (bodyOverflowRef.current === null) {
-				bodyOverflowRef.current = style.overflow || '';
-			}
-			style.overflow = 'hidden';
-			return;
-		}
-
-		if (bodyOverflowRef.current !== null) {
-			style.overflow = bodyOverflowRef.current;
-			bodyOverflowRef.current = null;
-		}
-	}, [isOpen, mounted]);
-
-	useEffect(
-		() => () => {
-			if (bodyOverflowRef.current !== null) {
-				document.body.style.overflow = bodyOverflowRef.current;
-				bodyOverflowRef.current = null;
-			}
-		},
-		[]
-	);
+		if (!isOpen) return;
+		const previousOverflow = document.body.style.overflow;
+		document.body.style.overflow = 'hidden';
+		return () => {
+			document.body.style.overflow = previousOverflow;
+		};
+	}, [isOpen]);
 
 	const renderButton = (floating: boolean) => (
 		<button
@@ -77,53 +52,50 @@ export const BurgerMenu = ({
 		</button>
 	);
 
-	const overlay = mounted
-		? createPortal(
-				<>
-					<div
-						className={styles.backdrop}
-						data-open={isOpen ? 'true' : 'false'}
-						onClick={closeMenu}
-						aria-hidden="true"
-					/>
+	const overlay =
+		mounted
+			? createPortal(
+					<>
+						<div
+							className={styles.backdrop}
+							data-open={openState}
+							onClick={closeMenu}
+							aria-hidden="true"
+						/>
 
-					<nav
-						className={styles.panel}
-						data-open={isOpen ? 'true' : 'false'}
-						id="mobile-menu"
-						aria-hidden={!isOpen}
-						aria-label="Mobile menu"
-					>
-						<p>Menu</p>
-						<ul>
-							{navItems.map((item) => (
-								<li key={`${item.label}-mobile`}>
-									<Link
-										href={item.href}
-										onClick={closeMenu}
-									>
-										{item.label}
-									</Link>
-								</li>
-							))}
-						</ul>
-						<Link
-							className={styles.cta}
-							href={contactHref}
+						<nav
+							className={styles.panel}
+							data-open={openState}
+							id="mobile-menu"
+							aria-hidden={!isOpen}
+							aria-label="Mobile menu"
 						>
-							{contactLabel}
-						</Link>
-					</nav>
-					{isOpen ? renderButton(true) : null}
-				</>,
-				document.body
-			)
-		: null;
+							<p>Menu</p>
+							<ul onClick={closeMenu}>
+								{navItems.map((item) => (
+									<li key={item.label}>
+										<Link href={item.href}>{item.label}</Link>
+									</li>
+								))}
+							</ul>
+							<Link
+								className={styles.cta}
+								href={contactHref}
+								onClick={closeMenu}
+							>
+								{contactLabel}
+							</Link>
+						</nav>
+						{isOpen && renderButton(true)}
+					</>,
+					document.body,
+				)
+			: null;
 
 	return (
 		<div className={styles.root}>
-			{isOpen ? null : renderButton(false)}
+			{!isOpen && renderButton(false)}
 			{overlay}
 		</div>
 	);
-};
+});
